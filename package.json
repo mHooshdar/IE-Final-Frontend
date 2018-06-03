@@ -4,6 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -13,8 +16,5 @@
     "next": "^6.0.3",
     "react": "^16.4.0",
     "react-dom": "^16.4.0"
-  },
-  "scripts": {
-    "dev": "next"
   }
 }

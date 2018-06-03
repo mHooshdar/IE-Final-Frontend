@@ -1,0 +1,21 @@
+{
+  "name": "FirstNextProject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "next": "^6.0.3",
+    "node-sass": "^4.9.0",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0"
+  }
+}
