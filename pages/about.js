@@ -1,16 +1,7 @@
-import Link from 'next/link'
-
-const titleStyle = {
-  fontSize: '4rem',
-  lineHeight: '1.6',
-  color: '#222'
-}
+import Layout from '../components/MyLayout.js'
 
 export default () => (
-  <div>
-    <p style={titleStyle}>This is the about page</p>
-    <Link href="/about">
-      <a>About Page</a>
-    </Link>
-  </div>
+  <Layout>
+    <p>This is the about page</p>
+  </Layout>
 )

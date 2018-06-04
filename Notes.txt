@@ -1,0 +1,3 @@
+1- _document.js file changes for add head and script
+2- We can create layout and use props.children in it
+3- Styles for each component in <styled jsx> need better code TODO:
