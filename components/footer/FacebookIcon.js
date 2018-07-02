@@ -31,7 +31,7 @@ const FacebookIcon = (props) => (
       style={{fillRule:'evenodd', clipRule:'evenodd'}}
     />
   </svg>
-)
+);
 
 FacebookIcon.defaultProps = {
   width: '100px',

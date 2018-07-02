@@ -47,6 +47,6 @@ const Header = () => (
       <NavigationBottom/>
     </nav>
   </header>
-)
+);
 
 export default Header

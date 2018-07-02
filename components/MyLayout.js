@@ -7,6 +7,6 @@ const Layout = (props) => (
     {props.children}
     <Footer />
   </div>
-)
+);
 
 export default Layout

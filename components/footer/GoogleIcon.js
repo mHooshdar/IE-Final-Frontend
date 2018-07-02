@@ -29,7 +29,7 @@ const GoogleIcon = (props) => (
       style={{fillRule:'evenodd', clipRule:'evenodd'}}
     />
   </svg>
-)
+);
 
 GoogleIcon.defaultProps = {
   width: '100px',

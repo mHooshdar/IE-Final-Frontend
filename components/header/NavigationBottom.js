@@ -48,6 +48,6 @@ const NavigationBottom = () => (
       </div>
     </div>
   </div>
-)
+);
 
 export default NavigationBottom;

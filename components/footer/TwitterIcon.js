@@ -30,7 +30,7 @@ const TwitterIcon = (props) => (
       style={{fillRule:'evenodd', clipRule:'evenodd'}}
     />
   </svg>
-)
+);
 
 TwitterIcon.defaultProps = {
   width: '100px',

@@ -148,4 +148,5 @@ const NavigationTop = () => (
     </div>
   </div>
 );
+
 export default NavigationTop;
