@@ -2,6 +2,7 @@
 import Layout from '../components/MyLayout';
 import Carousel from '../components/index/Carousel';
 import CategoryBanner from '../components/index/CategoryBanner';
+import JoinUs from '../components/index/JoinUs';
 
 // const PostLink = (props) => (
 //   <li>
@@ -22,6 +23,7 @@ const Index = () => (
     <div className="container-fluid home">
       <Carousel/>
       <CategoryBanner/>
+      <JoinUs/>
     </div>
     {/* <ul>
       <PostLink title="Hello Next.js"/>

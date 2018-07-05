@@ -6,7 +6,7 @@ const Category = (props) => (
       .itemImages{
         width: 100%;
         height: 250px;
-        margin-top: 15px;
+        margin-top: 0;
         object-fit: cover;
         -webkit-transition: opacity 0.3s;
         transition: opacity 0.3s;
@@ -49,18 +49,17 @@ const Category = (props) => (
         -webkit-transition: opacity 0.3s;
         transition: opacity 0.3s;
       }
-      
-      @media (max-width: 767px) {
-        .item{
-          padding-right: 15px;
-          padding-left: 15px;
-        }
+      @media (min-width: 1200px) { 
         .itemImages{
           height: 300px;
         }
       }
-      
-      @media (min-width: 1200px) { 
+      @media (max-width: 767px) {
+        .item{
+          padding-right: 15px !important;
+          padding-left: 15px !important;
+          padding-bottom: 0px;
+        }
         .itemImages{
           height: 300px;
         }

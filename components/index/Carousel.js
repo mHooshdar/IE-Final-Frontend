@@ -16,6 +16,9 @@ const Carousel = () => (
       .myItem{
         max-height: 400px;
       }
+      .carousel{
+        margin-bottom: 15px;
+      }
     `}</style>
     <div id="myCarousel" className="carousel slide" data-ride="carousel">
       {/* Indicators  */}

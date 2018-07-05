@@ -19,14 +19,12 @@ const Header = () => (
         margin-bottom: 20px;
         border-bottom: 1px solid rgb(240, 240, 240);
       }
-      
       @media (max-width: 767px) {
         .headerName{
           color: ${global.gray};
           top: 8px; 
         }
       }
-      
       @media (min-width: 992px) {
         .header{
           margin-left: 7%;
