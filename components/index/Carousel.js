@@ -4,14 +4,14 @@ const Carousel = () => (
   <div className="carousel">
     <style jsx global>{`
       .myCarouselIndicators { 
-        padding-right: 0;
-        bottom: 0px;
+        padding-right: 0 !important;
+        bottom: 0px !important;
       }
       .images {
         width: 100%;
       }
       .myCarouselIndicators li{
-        background: ${global.gray};
+        background: ${global.gray} !important;
       }
       .myItem{
         max-height: 400px;

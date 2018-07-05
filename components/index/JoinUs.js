@@ -97,7 +97,7 @@ const JoinUs = () => (
         -webkit-box-shadow: 0 0;
         box-shadow: 0 0;
       }
-      .join-button{
+      .joinButton{
         color: rgb(255, 255, 255);
         background: rgb(32, 32, 32);
         display: block;
@@ -110,7 +110,7 @@ const JoinUs = () => (
         margin-top: 20px;
         margin-bottom: 20px;
       }
-      .join-button:hover{
+      .joinButton:hover{
         background: rgb(34, 38, 64);
       }
       @media (max-width: 767px) {
@@ -149,7 +149,7 @@ const JoinUs = () => (
           <span className="input-group-addon emailIcon"><i className="glyphicon glyphicon-user"></i></span>
           <input type="text" className="emailTextfield" placeholder="ایمیل خود را وارد کنید"/>
         </div>
-        <a href="#" className="join-button">عضو شوید</a>
+        <a href="#" className="joinButton">عضو شوید</a>
       </div>
     </div>
   </div>
