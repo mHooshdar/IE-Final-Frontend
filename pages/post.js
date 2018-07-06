@@ -7,8 +7,14 @@ const Content = (props) => (
   </div>
 );
 
-export default (props) => (
-  <Layout>
-    <Content url={props.url}/>
-  </Layout>
-);
+class Post extends React.Component{
+  render () {
+    return (
+      <Layout>
+        <Content url={this.props.url}/>
+      </Layout>
+    );
+  }
+}
+
+export default Post

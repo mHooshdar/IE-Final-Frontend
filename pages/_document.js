@@ -49,6 +49,10 @@ export default class MyDocument extends Document {
             a:hover{
               text-decoration: none !important;
             }
+            a:focus{
+              outline: 0px auto -webkit-focus-ring-color !important;
+              outline-offset: 0px !important;
+            }
           `}</style>
           <Main />
           <NextScript />

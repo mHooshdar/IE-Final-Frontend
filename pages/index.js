@@ -12,30 +12,33 @@ import JoinUs from '../components/index/JoinUs';
 //   </li>
 // );
 
-const Index = () => (
-  <Layout>
-    <style jsx>{`
-    .home{
-      padding-right: 3%;
-      padding-left: 3%;
-    }
-    `}</style>
-    <div className="container-fluid home">
-      <Carousel/>
-      <CategoryBanner/>
-      <JoinUs/>
-    </div>
-    {/* <ul>
-      <PostLink title="Hello Next.js"/>
-      <PostLink title="Learn Next.js is awesome"/>
-      <PostLink title="Deploy apps with Zeit"/>
-    </ul>
-    <Link href="/about">
-      <a className="link">
-        About Page
-      </a>
-    </Link> */}
-  </Layout>
-);
-
+class Index extends React.Component{
+  render () {
+    return (
+      <Layout>
+        <style jsx>{`
+        .home{
+          padding-right: 3%;
+          padding-left: 3%;
+        }
+        `}</style>
+        <div className="container-fluid home">
+          <Carousel/>
+          <CategoryBanner/>
+          <JoinUs/>
+        </div>
+        {/* <ul>
+          <PostLink title="Hello Next.js"/>
+          <PostLink title="Learn Next.js is awesome"/>
+          <PostLink title="Deploy apps with Zeit"/>
+        </ul>
+        <Link href="/about">
+          <a className="link">
+            About Page
+          </a>
+        </Link> */}
+      </Layout>
+    );
+  }
+}
 export default Index
