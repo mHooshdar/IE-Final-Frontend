@@ -27,13 +27,18 @@ class RegisterLoginModal extends React.Component {
         <style jsx>{`
           .loginRegisterForm{
             margin: 25px;
-            margin-top: 20;
+            margin-top: 20px;
           }
           .myClose{
+			position: absolute;
             display: block;
             font-size: 40px;
             text-align: right;
           }
+		  .myClose:focus{
+			border: 0;
+			outline: 0;
+		  }
           .modalHead{
             text-align: center;
             font-size: 25px;
@@ -45,11 +50,6 @@ class RegisterLoginModal extends React.Component {
             font-size: 12px;
             font-weight: lighter;
             margin: 0;
-          }
-          .contactUsFormLabel{
-            margin: 0;
-            color: ${global.blue};
-            font-weight: bold;
           }
           .contactUsTextfield{
             width: 100%;
@@ -133,7 +133,7 @@ class RegisterLoginModal extends React.Component {
             height: 380px;
             margin: auto;
             border: 1px solid rgb(150, 150, 150);
-            borderRadius: 0;
+            border-radius: 0;
           }
           @media (max-width: 767px) {
             :global(.modalContent){
@@ -152,9 +152,9 @@ class RegisterLoginModal extends React.Component {
               <span>&times;</span>
             </button>
             <p className='modalHead'>{this.state.mode}</p>
-            <label className='myLabel' className='contactUsFormLabel'>شماره تلفن یا ایمیل</label>
-            <input type='text' name='emailOrUername' className='contactUsTextfield' type='text' placeholder='abc@abc.abc' dir='ltr'/>
-            <label className='myLabel' className='contactUsFormLabel'>رمز عبور</label>
+            <label className='myLabel'>شماره تلفن یا ایمیل</label>
+            <input type='text' name='emailOrUername' className='contactUsTextfield' placeholder='abc@abc.abc' dir='ltr'/>
+            <label className='myLabel'>رمز عبور</label>
             <input type='password' name='password' className='contactUsTextfield' placeholder='رمزعبور' dir='ltr'/>
             <div className='forgotContainer'>
               <span className='forgotText'>رمز عبور خود را فراموش کرده اید؟</span>

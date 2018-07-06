@@ -1,6 +1,6 @@
 import global from '../../static/global';
 
-import ModalTest from '../utils/ModalTest';
+import RegisterLoginModal from '../utils/RegisterLoginModal';
 
 class NavigationTop extends React.Component{
 
@@ -163,7 +163,7 @@ class NavigationTop extends React.Component{
               </div>
             </div>
           </form>
-          <ModalTest ref={(modal) => { this.signInSignUpModal = modal; }}/>
+          <RegisterLoginModal ref={(modal) => { this.signInSignUpModal = modal; }}/>
         </div>
       </div>
     );

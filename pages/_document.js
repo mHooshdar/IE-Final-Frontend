@@ -50,6 +50,7 @@ export default class MyDocument extends Document {
               text-decoration: none !important;
             }
             a:focus{
+			  text-decoration: none;
               outline: 0px auto -webkit-focus-ring-color !important;
               outline-offset: 0px !important;
             }
