@@ -1,8 +1,11 @@
 import global from '../../static/global';
 
 const JoinUs = () => (
-  <div className="container-fluid home">
+  <div>
     <style jsx>{`
+	  .joinUs{
+		margin: 0px;
+	  }
       .aboutCell{
         height: 318px;
         margin-bottom: 20px;
@@ -130,12 +133,9 @@ const JoinUs = () => (
           transform: translate(-50%, -50%);
           -ms-transform: translate(-50%, -50%);
         }
-        .aboutCell{
-          padding: 0 !important;
-        }
       }
     `}</style>
-    <div className="row">
+    <div className="joinUs row">
       <p className="aboutHead">بهترین ها را از ما خرید کنید</p>
       <div className="col-lg-8 col-md-8 col-sm-7 col-xs-12 allBrandBox aboutCell">
         <img className="allBrands" src="/static/images/index/all-brands.png"/>
