@@ -209,16 +209,16 @@ class NavigationTop extends React.Component{
                     <li><a href="#">خروج</a></li>
                   </ul>
                 </div>
-                <div className="userParts">
+                <a href="#" className="userParts">
                   <span>سبد خرید</span>
                   <div className="userBag">
-                    <img className="bag" src="/static/images/index/bag.png"/>
+                    <img className="bag" src="/static/header/index/bag.png"/>
                     <div className="myBadge">{this.state.user.bag}</div>
                   </div>
-                </div>
+                </a>
                 <a href="#" className="userParts">
                   <span>پیگیری سفارش</span>
-                  <img className="checkOrder" src="/static/images/index/check-order.png"/>
+                  <img className="checkOrder" src="/static/images/header/check-order.png"/>
                 </a>
               </div>
               :
