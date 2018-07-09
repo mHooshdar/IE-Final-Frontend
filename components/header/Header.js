@@ -23,20 +23,22 @@ class Header extends React.Component{
           }
           @media (max-width: 767px) {
             .headerName{
-              color: ${global.gray};
               top: 8px; 
             }
           }
-          @media (min-width: 992px) {
+          @media (min-width: 1100px) {
             .header{
               margin-left: 7%;
               margin-right: 7%;
             }
           }
-          @media (min-width: 768px) and (max-width: 991px) {
+          @media (min-width: 768px) and (max-width: 1099px) {
             .header{
               margin-left: 3%;
               margin-right: 3%;
+            }
+            .headerName{
+              top: 8px; 
             }
           }
         `}</style>

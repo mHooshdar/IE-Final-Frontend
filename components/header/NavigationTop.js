@@ -6,7 +6,12 @@ class NavigationTop extends React.Component{
 
   constructor () {
     super();
-
+    this.state = {
+      user: {
+        name: 'محمد هوشدار',
+        bag: '0'
+      }
+    };
     this.onSignInClick = this.onSignInClick.bind(this);
     this.onSignUpClick = this.onSignUpClick.bind(this);
   }
@@ -126,7 +131,46 @@ class NavigationTop extends React.Component{
             border-bottom-left-radius: 15px !important;
             border-right: 0px;
           }
-          
+          .userParts{
+            display: inline-block;
+            font-size: 15px;
+            padding: 5px;
+            color: ${global.gray} !important;
+          }
+          .userDetail{
+            background-color: inherit !important;
+            color: ${global.gray} !important;
+          }
+          .userDetail:focus, .userDetail:hover{
+            background-color: inherit;
+          }
+          .bag{
+            width: 30px;
+            height: 30px;
+            margin-right: 3px;
+          }
+          .checkOrder{
+            width: 30px;
+            height: 30px;
+            margin-right: 5px;
+          }
+          .userBag{
+            position: relative;
+            display: inline-block;
+          }
+          .myBadge {
+            position: absolute;
+            border-radius: 50%;
+            left: -5px;
+            top: 15px;
+            width: 25px;
+            height: 25px;
+            padding: 6px;
+            font-size: 10px;
+            background: ${global.badgeColor};
+            color: rgb(255, 255, 255);
+            text-align: center;
+          }
           @media (max-width: 767px) {
             .headerRow{
               margin-top: 0px;
@@ -137,6 +181,9 @@ class NavigationTop extends React.Component{
             }
             .mNavbarCollapse{
               border-top: 1px solid ${global.gray};
+            }
+            .userParts{
+              display: block;
             }
           }
         `}</style>
@@ -150,8 +197,36 @@ class NavigationTop extends React.Component{
         </div>
         <div className="collapse navbar-collapse mNavbarCollapse" id="myNavbar">
           <div className="nav navbar-nav navbar-right headerRow">
-            <a href="#" className="blockButton signUpBtn" onClick={this.onSignUpClick}>عضویت</a>
-            <a href="#" className="blockButton signInBtn" onClick={this.onSignInClick}>ورود</a>
+            {this.state.user ?
+              <div>
+                <div className="dropdown userParts">
+                  <a href="#" className="dropdown-toggle userDetail" data-toggle="dropdown">
+                    {this.state.user.name}
+                    <span className="glyphicon glyphicon-menu-down"></span>
+                  </a>
+                  <ul className="dropdown-menu">
+                    <li><a href="#">مشخصات کاربری</a></li>
+                    <li><a href="#">خروج</a></li>
+                  </ul>
+                </div>
+                <div className="userParts">
+                  <span>سبد خرید</span>
+                  <div className="userBag">
+                    <img className="bag" src="/static/images/index/bag.png"/>
+                    <div className="myBadge">{this.state.user.bag}</div>
+                  </div>
+                </div>
+                <a href="#" className="userParts">
+                  <span>پیگیری سفارش</span>
+                  <img className="checkOrder" src="/static/images/index/check-order.png"/>
+                </a>
+              </div>
+              :
+              <div>
+                <a href="#" className="blockButton signUpBtn" onClick={this.onSignUpClick}>عضویت</a>
+                <a href="#" className="blockButton signInBtn" onClick={this.onSignInClick}>ورود</a>
+              </div>
+            }
           </div>
           <form className="navbar-form myNavbarForm navbar-left headerRow searchForm" action="#">
             <div className="input-group">

@@ -50,15 +50,15 @@ export default class MyDocument extends Document {
               text-decoration: none !important;
             }
             a:focus{
-			  text-decoration: none;
+			        text-decoration: none;
               outline: 0px auto -webkit-focus-ring-color !important;
               outline-offset: 0px !important;
             }
           `}</style>
           <Main />
-          <NextScript />
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+          <NextScript />
         </body>
       </html>
     );
