@@ -4,17 +4,29 @@ import global from '../../static/global';
 ReactModal.setAppElement('#__next');
 
 class RegisterLoginModal extends React.Component {
-  constructor () {
-    super();
+  /*
+    mode: number // 0 => login, 1 => register
+  }
+  */
+
+  constructor (props) {
+    super(props);
     this.state = {
-      showModal: false
+      showModal: false,
+      textShow: 'ورود',
+      mode: 0
     };
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
   }
   
   handleOpenModal (mode) {
-    this.setState({ showModal: true, mode: mode });
+    if(mode == 0){
+      this.setState({ showModal: true, mode: mode, showText: 'ورود'});
+    }
+    else if(mode == 1){
+      this.setState({ showModal: true, mode: mode, showText: 'ثبت نام'});
+    }
   }
   
   handleCloseModal () {
@@ -30,15 +42,15 @@ class RegisterLoginModal extends React.Component {
             margin-top: 20px;
           }
           .myClose{
-			position: absolute;
+            position: absolute;
             display: block;
             font-size: 40px;
             text-align: right;
           }
-		  .myClose:focus{
-			border: 0;
-			outline: 0;
-		  }
+          .myClose:focus{
+            border: 0;
+            outline: 0;
+          }
           .modalHead{
             text-align: center;
             font-size: 25px;
@@ -151,7 +163,7 @@ class RegisterLoginModal extends React.Component {
             <button onClick={this.handleCloseModal} className="myClose close">
               <span>&times;</span>
             </button>
-            <p className='modalHead'>{this.state.mode}</p>
+            <p className='modalHead'>{this.state.showText}</p>
             <label className='myLabel'>شماره تلفن یا ایمیل</label>
             <input type='text' name='emailOrUername' className='contactUsTextfield' placeholder='abc@abc.abc' dir='ltr'/>
             <label className='myLabel'>رمز عبور</label>
@@ -160,7 +172,7 @@ class RegisterLoginModal extends React.Component {
               <span className='forgotText'>رمز عبور خود را فراموش کرده اید؟</span>
               <a href='#' className='forgotLink'> کلیک کنید</a>
             </div>
-            <button type='submit' className='signInSignUpBtn'>{this.state.mode}</button>
+            <button type='submit' className='signInSignUpBtn'>{this.state.showText}</button>
           </form>
         </ReactModal>
       </div>

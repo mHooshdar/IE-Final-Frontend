@@ -16,10 +16,10 @@ class NavigationTop extends React.Component{
     this.onSignUpClick = this.onSignUpClick.bind(this);
   }
   onSignInClick() {
-    this.signInSignUpModal.handleOpenModal('ورود');
+    this.signInSignUpModal.handleOpenModal(0);
   }
   onSignUpClick(){
-    this.signInSignUpModal.handleOpenModal('ثبت نام');
+    this.signInSignUpModal.handleOpenModal(1);
   }
 
   render () {
@@ -212,7 +212,7 @@ class NavigationTop extends React.Component{
                 <a href="#" className="userParts">
                   <span>سبد خرید</span>
                   <div className="userBag">
-                    <img className="bag" src="/static/header/index/bag.png"/>
+                    <img className="bag" src="/static/images/header/bag.png"/>
                     <div className="myBadge">{this.state.user.bag}</div>
                   </div>
                 </a>

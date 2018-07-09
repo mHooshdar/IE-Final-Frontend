@@ -3,3 +3,11 @@ user: {
   name: string,
   bag: int
 }
+
+product:{
+  percent: int, // 0 or ''
+  src: string, // ratio 3 * 4
+  brandName: string,
+  productName: string,
+  price: 0int
+}
