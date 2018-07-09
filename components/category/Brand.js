@@ -12,7 +12,7 @@ class Brand extends React.Component{
   render () {
     return (
       // href must come from parent
-      <a href="#" className="brand">
+      <a href="#" className="row brand">
         <style jsx>{`
           .brand{
             border: 2px solid ${global.gray};
@@ -22,24 +22,22 @@ class Brand extends React.Component{
             padding: 0;
           }
           .brandName{
-            margin-top: 100px;
+            margin-top: 30%;
             font-size: 25px;
             font-weight: bold;
             color: ${global.gray};
           }
           .brandImage{
-            width: 250px !important;
-            height: 250px !important;
+            width: 100%;
+            height: 100%;
           }
           .rightSide{
-            text-align: center;
             display: inline-block;
-            width: 250px !important;
-            height: 250px !important;
+            text-align: center;
+            padding: 0;
           }
           .leftSide{
-            display: inline-block;
-            float: left;
+            padding: 0;
           }
           .signInBtn{
             display: inline-block;
@@ -62,13 +60,21 @@ class Brand extends React.Component{
             -webkit-transition: background 0.3s;
             transition: background 0.3s;
           }
+          @media (max-width: 767px) {
+          }
+          @media (min-width: 768px) and (max-width: 991px) {
+          }
+          @media (min-width: 992px) and (max-width: 1191px) {
+          }
+          @media (min-width: 1200px) {
+          }
         `}</style>
-        <div className="leftSide">
-          <img className="brandImage" src={this.props.src} alt={this.props.brandName}/>
-        </div>
-        <div className="rightSide">
+        <div className="col-xs-6 rightSide">
           <p className="brandName">{this.props.brandName}</p>
           <a href="#" className="blockButton signInBtn">خرید</a>
+        </div>
+        <div className="col-xs-6 leftSide">
+          <img className="brandImage" src={this.props.src} alt={this.props.brandName}/>
         </div>
       </a>
     );

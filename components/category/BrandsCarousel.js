@@ -31,8 +31,18 @@ class BrandsCarousel extends React.Component{
       dots: false,
       animateOut: 'slideOutDown',
       animateIn: 'flipInX',
-      smartSpeed:750,
-      autoWidth: true
+      smartSpeed:200,
+      responsive:{
+        0:{
+          items: 1
+        },
+        768: {
+          items: 1
+        },
+        992:{
+          items: 2
+        }
+      }
     });
     $("#nextBrands").click(function() {
       carouselEl.trigger('next.owl.carousel');
