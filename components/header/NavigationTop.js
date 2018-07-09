@@ -9,7 +9,7 @@ class NavigationTop extends React.Component{
     this.state = {
       user: {
         name: 'محمد هوشدار',
-        bag: '0'
+        bag: 10
       }
     };
     this.onSignInClick = this.onSignInClick.bind(this);

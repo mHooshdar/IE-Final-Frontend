@@ -1,4 +1,5 @@
 
 user: {
-  name: string
+  name: string,
+  bag: int
 }
