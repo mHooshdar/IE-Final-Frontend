@@ -60,14 +60,6 @@ class Brand extends React.Component{
             -webkit-transition: background 0.3s;
             transition: background 0.3s;
           }
-          @media (max-width: 767px) {
-          }
-          @media (min-width: 768px) and (max-width: 991px) {
-          }
-          @media (min-width: 992px) and (max-width: 1191px) {
-          }
-          @media (min-width: 1200px) {
-          }
         `}</style>
         <div className="col-xs-6 rightSide">
           <p className="brandName">{this.props.brandName}</p>
