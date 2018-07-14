@@ -7,13 +7,27 @@ class Product extends React.Component{
   */
 
   constructor (props) {
-   super(props);
+    super(props);
+
+    this.mouseEnter = this.mouseEnter.bind(this);
+    this.mouseLeave = this.mouseLeave.bind(this);
+  }
+
+  mouseEnter(){
+    $("#productImg" + this.props.id).fadeToggle({
+      duration : "fast",
+    });
+  }
+  mouseLeave(){
+    $("#productImg" + this.props.id).fadeToggle({
+      duration : "fast",
+    });
   }
   
   render () {
     return (
       // href must come from parent
-      <a href="#" className="product">
+      <a href="#" className="product" onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave}>
         <style jsx>{`
           .product{
             position: relative;
@@ -35,7 +49,16 @@ class Product extends React.Component{
             text-align: center;
             z-index: 100;
           }
-          .productImage{
+          .productImage, .productImage2{
+            width: 180px;
+            height: 235px;
+          }
+          .productImage2{
+            position: absolute;
+            top: 0; 
+            left: 0;
+          }
+          .fader{
             width: 180px;
             height: 235px;
           }
@@ -56,13 +79,21 @@ class Product extends React.Component{
             font-size: 15px;
             color: ${global.badgeColor};
           }
+          .price{
+            margin-right: 10px;
+            font-size: 15px;
+          }
         `}</style>
         {this.props.percent ?
           <div className="myBadge">%{this.props.percent}</div>
           :
           ''
         }
-        <img className="productImage" src={this.props.src} alt={this.props.productName}/>
+        <div class="fader">
+          <img className="productImage" src={this.props.src} alt={this.props.productName}/>
+          <img id={"productImg" + this.props.id} className="productImage2" src={this.props.src2} alt={this.props.productName} style={{display: "none"}}/>
+        </div>​
+        
         <p className="brandName">{this.props.brandName}</p>
         <p className="productName">{this.props.productName}</p>
         {this.props.percent ?
@@ -81,8 +112,10 @@ class Product extends React.Component{
 }
 
 Product.defaultProps = {
+  id: 1,
   percent: 0,
   src: '',
+  src2: '',
   brandName: '',
   productName: '',
   price: 0

@@ -2,7 +2,7 @@ import global from '../../static/global';
 
 class Brand extends React.Component{
   /*
-    images ration: 3 * 4
+    images ration: 1 * 1
   */
 
   constructor (props) {
@@ -74,6 +74,7 @@ class Brand extends React.Component{
 }
 
 Brand.defaultProps = {
+  key: 1,
   src: '',
   brandName: ''
 }

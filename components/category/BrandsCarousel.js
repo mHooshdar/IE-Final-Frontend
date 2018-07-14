@@ -6,18 +6,22 @@ class BrandsCarousel extends React.Component{
     super(props);
     this.brands = [
       {
+        id: 1,
         src:"/static/images/category/tb1.jpg",
         brandName:"Defacto",
       },
       {
+        id: 2,
         src:"/static/images/category/tb2.jpg",
         brandName:"LC Waikiki",
       },
       {
+        id: 3,
         src:"/static/images/category/tb3.jpg",
         brandName:"Debenhams",
       },
       {
+        id: 4,
         src:"/static/images/category/tb4.jpg",
         brandName:"Monsoon",
       },

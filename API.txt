@@ -5,9 +5,44 @@ user: {
 }
 
 product:{
+  id: int
   percent: int, // 0 or ''
   src: string, // ratio 3 * 4
+  src2: string, // ratio 3 * 4, second img for hovering
   brandName: string,
   productName: string,
   price: 0int
+}
+
+brand: {
+  id: int,
+  src: int, // ratio 1 * 1
+  brandName: string
+}
+
+brandBase: {
+  id: int,
+  faName: string,
+  enName: string
+}
+
+colorBase: {
+  id: int,
+  title: string,
+  color: string
+}
+
+categoryBase: {
+  id: int, // 1
+  name: string,
+  subCategory: [ //array
+    {
+      id: int, // 11
+      name: string,
+      subCategory: [ //array
+        id: int, // 11
+        name: string
+      ]
+    }
+  ]
 }
