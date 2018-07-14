@@ -50,13 +50,14 @@ class Product extends React.Component{
             z-index: 100;
           }
           .productImage, .productImage2{
-            width: 180px;
+            width: 180px !important;
             height: 235px;
           }
           .productImage2{
             position: absolute;
             top: 0; 
             left: 0;
+            right: 0;
           }
           .fader{
             width: 180px;
@@ -83,13 +84,47 @@ class Product extends React.Component{
             margin-right: 10px;
             font-size: 15px;
           }
+          @media (max-width: 767px) {
+            .brandName{
+              font-size: 15px;
+            }
+            .productName{
+              font-size: 15px;
+            }
+            .realPriceOff{
+              font-size: 9px;
+            }
+            .offPrice{
+              font-size: 12px;
+            }
+            .price{
+              font-size: 12px;
+            }
+          }
+          @media (min-width: 768px) and (max-width: 1199px) {
+            .brandName{
+              font-size: 16px;
+            }
+            .productName{
+              font-size: 16px;
+            }
+            .realPriceOff{
+              font-size: 10px;
+            }
+            .offPrice{
+              font-size: 13px;
+            }
+            .price{
+              font-size: 13px;
+            }
+          }
         `}</style>
         {this.props.percent ?
           <div className="myBadge">%{this.props.percent}</div>
           :
           ''
         }
-        <div class="fader">
+        <div className="fader">
           <img className="productImage" src={this.props.src} alt={this.props.productName}/>
           <img id={"productImg" + this.props.id} className="productImage2" src={this.props.src2} alt={this.props.productName} style={{display: "none"}}/>
         </div>​

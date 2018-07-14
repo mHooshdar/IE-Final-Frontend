@@ -100,7 +100,7 @@ class ProductPagination extends React.Component{
 
   render () {
     return (
-      <div className="productPagination clearfix">
+      <div className="productPagination">
         <style jsx>{`
           .categoryName{
             font-size: 28px;
@@ -210,7 +210,7 @@ class ProductPagination extends React.Component{
           </div>
         </div>
         {this.products.map((product, i) => 
-          <div className="col-lg-3 col-sm-3">
+          <div className="col-lg-3 col-md-4 col-sm-6 col-xs-6">
             <Product id={product.id} percent={product.percent} src={product.src} src2={product.src2} brandName={product.brandName} productName={product.productName} price={product.price}/>
           </div>
         )}

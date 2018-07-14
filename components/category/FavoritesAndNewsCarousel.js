@@ -3,7 +3,7 @@ import Product from './Product';
 
 class FavoritesAndNewsCarousel extends React.Component{
   /* props: {
-    mode: number // 0 => favorites, 1 => news
+    mode: number // 0 => favorites, 1 => news, 2 => LinkedProducts
   }
   */
   constructor (props) {
@@ -84,6 +84,9 @@ class FavoritesAndNewsCarousel extends React.Component{
     }
     else if(this.props.mode == 1){
       this.setState({showText: 'جدیدترین ها'});
+    }
+    else if(this.props.mode == 2){
+      this.setState({showText: 'محصولات مرتبط'});
     }
   }
   render () {

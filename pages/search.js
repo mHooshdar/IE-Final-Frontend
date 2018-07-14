@@ -11,14 +11,14 @@ class Search extends React.Component{
         <style jsx>{`
           .searchPanel{
             margin-bottom: 15px;
+            margin-left: 0;
+            margin-right: 0; 
           }
           @media (min-width: 1100px) {
             .searchPanel{
-              margin-left: 3%;
               margin-right: 3%;
             }
             .prodcutsPanel{
-              padding-left: 4%;
               padding-right: 4%;
             }
           }
@@ -30,15 +30,13 @@ class Search extends React.Component{
           }
         `}</style>
         <div className="row searchPanel">
-          <div className="col-lg-3">
+          <div className="col-lg-3 col-md-3 col-sm-4 col-xs-12">
             <CategoryBase/>
             <BrandBase/>
             <ColorBase/>
           </div>
-          <div className="col-lg-9">
-            <div className="row prodcutsPanel">
-              <ProductPagination/>
-            </div>
+          <div className="prodcutsPanel col-lg-9 col-md-9 col-sm-8 col-xs-12">
+            <ProductPagination/>
           </div>
         </div>
       </Layout>

@@ -46,3 +46,9 @@ categoryBase: {
     }
   ]
 }
+
+information: {
+  id: int,
+  key: string,
+  value: string
+}
