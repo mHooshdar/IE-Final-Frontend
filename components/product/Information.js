@@ -1,5 +1,4 @@
 import global from '../../static/global';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 class Information extends React.Component{
   constructor (props) {

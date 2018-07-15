@@ -52,3 +52,26 @@ information: {
   key: string,
   value: string
 }
+
+productDetail: {
+  id: int,
+  percent: int,
+  price: int,
+  colors: [ // array
+    {
+      title: string,
+      color: string
+    },
+  ],
+  sizes:[ //array
+    string,
+  ],
+  brandName: string,
+  productName: string,
+  features: [ //array
+    string,
+  ],
+  srcs: [ //array
+    string, //ratio 3 * 4
+  ]
+}

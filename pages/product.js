@@ -1,6 +1,7 @@
 import Layout from '../components/MyLayout';
 import FavoritesAndNewsCarousel from '../components/category/FavoritesAndNewsCarousel';
 import Information from '../components/product/Information';
+import ProductDetail from '../components/product/ProductDetail';
 
 class Product extends React.Component{
   render () {
@@ -15,10 +16,12 @@ class Product extends React.Component{
             background: rgb(245, 245, 245);
           }
         `}</style>
+        <ProductDetail/>
         <Information/>
         <div className="favoritesAndNewsContainer">
           <FavoritesAndNewsCarousel mode={2}/>
         </div>
+
       </Layout>
     );
   }
