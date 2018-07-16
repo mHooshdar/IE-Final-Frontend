@@ -309,7 +309,7 @@ class CategoryBase extends React.Component{
       <div className="categoryBase">
         <style jsx>{`
           .categoryBase {
-            background: ${global.lightGray};
+            background: ${global.lighterGray};
             padding: 20px 20px 10px 5px;
             margin-bottom: 15px;
           }
@@ -335,7 +335,7 @@ class CategoryBase extends React.Component{
             padding-right: 10px;
           }
           .categories::-webkit-scrollbar-track {
-            background: ${global.lightGray}; 
+            background: ${global.lighterGray}; 
             border-radius: 3px;
           }
           .categories::-webkit-scrollbar-thumb {

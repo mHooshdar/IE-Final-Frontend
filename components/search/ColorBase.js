@@ -137,7 +137,7 @@ class ColorBase extends React.Component{
       <div className="colorBase">
         <style jsx>{`
           .colorBase {
-            background: ${global.lightGray};
+            background: ${global.lighterGray};
             padding: 20px 20px 10px 5px;
             margin-bottom: 15px;
           }
@@ -214,7 +214,7 @@ class ColorBase extends React.Component{
             padding-right: 10px;
           }
           .colors::-webkit-scrollbar-track {
-            background: ${global.lightGray}; 
+            background: ${global.lighterGray}; 
             border-radius: 3px;
           }
           .colors::-webkit-scrollbar-thumb {

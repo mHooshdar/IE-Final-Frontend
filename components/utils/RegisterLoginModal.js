@@ -68,7 +68,7 @@ class RegisterLoginModal extends React.Component {
             padding: 10px 20px;
             box-sizing: border-box;
             border: 1px solid rgb(200, 200, 200);
-            background: ${global.lightGray};
+            background: ${global.lighterGray};
             border-radius: 20px;
             margin-bottom: 10px;
             color: rgb(110, 110, 110);

@@ -123,7 +123,7 @@ class ProductPagination extends React.Component{
             right: 0;
             z-index: 1000;
             border-radius: 0;
-            background: ${global.lightGray};
+            background: ${global.lighterGray};
             border: 1px solid ${global.gray};
             color: black;
           }

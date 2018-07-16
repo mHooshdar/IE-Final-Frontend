@@ -67,7 +67,7 @@ class BrandBase extends React.Component{
       <div className="brandBase">
         <style jsx>{`
           .brandBase {
-            background: ${global.lightGray};
+            background: ${global.lighterGray};
             padding: 20px 20px 10px 5px;
             margin-bottom: 15px;
           }
@@ -175,7 +175,7 @@ class BrandBase extends React.Component{
             padding-right: 10px;
           }
           .brands::-webkit-scrollbar-track {
-            background: ${global.lightGray}; 
+            background: ${global.lighterGray}; 
             border-radius: 3px;
           }
           .brands::-webkit-scrollbar-thumb {

@@ -75,3 +75,14 @@ productDetail: {
     string, //ratio 3 * 4
   ]
 }
+
+productBags: {
+  id: int,
+  src: string, // ration 3 * 4
+  brandName: string,
+  productName: string,
+  color: string,
+  size: string,
+  price: int,
+  percent: int,
+}
