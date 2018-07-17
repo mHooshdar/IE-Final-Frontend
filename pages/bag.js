@@ -24,14 +24,12 @@ class Bag extends React.Component{
 
   renderProgressBodyPart(){
     if(this.state.step == 1){
-      return <Delivery/>;
-      // return <ProductBag/>;
+      return <ProductBag/>;
     }
     else if(this.state.step == 2){
       // send step2 to progress
       this.progress.setState({step2: true});
-      return <ProductBag/>;
-      // return <Delivery/>;
+      return <Delivery/>;
     }
     else if(this.state.step == 3){
       // send step2 to progress

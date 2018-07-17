@@ -86,3 +86,18 @@ productBags: {
   price: int,
   percent: int,
 }
+
+addresses: { //array
+  id: int,
+  name: string,
+  phoneNumber: string,
+  homePhone: string,
+  address:string,
+  zipCode: string,
+}
+
+sendCost: int,
+
+times: [ //array
+  string,
+]
