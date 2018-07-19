@@ -106,7 +106,7 @@ class DetailsPanel extends React.Component{
             transition: all .2s ease-out;
             cursor: pointer;
             stroke: ${global.gray};
-            stroke-width: 3px;
+            strokeWidth: 3px;
           }
           .likeImg:hover{
             fill: ${global.badgeColor};

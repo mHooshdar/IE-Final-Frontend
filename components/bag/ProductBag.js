@@ -71,8 +71,8 @@ class ProductBag extends React.Component{
           .emptyLeftHeader{
             border-right: 1px solid ${global.gray};
             border-left: 1px solid ${global.gray};
-            width: 50px;
-            height: 60px;
+            // width: 50px;
+            // height: 60px;
             display: inline-block;
           }
           .productPart{
@@ -181,9 +181,7 @@ class ProductBag extends React.Component{
             float: left;
           }
           .removePanel{
-            display: inline-block;
             background: ${global.lighterGray};
-            width: 50px;
             height: 201px;
             text-align: center;
             border-right: 1px solid ${global.gray};
@@ -202,26 +200,34 @@ class ProductBag extends React.Component{
             -ms-transform: translateY(-50%);
             transform: translateY(-50%);
           }
+          .bottomPart{
+            background: ${global.lighterGray};
+            padding-top: 10px;
+            padding-bottom: 10px;
+            text-align: center;
+          }
+          .myTable{
+            border: 1px solid ${global.gray};
+            margin-bottom: 0 !important;
+          }
         `}</style>
-        <div className="container-fluid">
-          <div className="productBagHeader">
-            <div className="row test">
-              <div className="colHeader col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-0 col-xs-12">
-                مشخصات محصول
-              </div>
-              <div className="colHeader col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                تعداد
-              </div>
-              <div className="colHeader col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                قیمت
-              </div>
-              <div className="emptyLeftHeader"></div>
-            </div>
-          </div>
-          <div className="body">
+        <table className="table myTable">
+          <thead>
+            <tr className="productBagHeader">
+              <td className="colHeader">مشخصات محصول</td>
+              <td className="colHeader">تعداد</td>
+              <td className="colHeader">قیمت</td>
+              {this.props.remove ?
+                ""
+                :  
+                <td className=""></td>
+              }
+            </tr>
+          </thead>
+          <tbody>
             {this.state.productBags.map((productBag) => 
-              <div className="row">
-                <div className="productPart col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-0">
+              <tr className="">
+                <td className="productPart">
                   <img src={productBag.src} className="productImage"/>
                   <div className="productDetail">
                     <p className="brandName">
@@ -240,15 +246,23 @@ class ProductBag extends React.Component{
                       کد کالا : <span>{productBag.id}</span>
                     </p>
                   </div>
-                </div>
-                <div className="col-lg-2 col-md-2 col-sm-3 incDecContainer">
+                </td>
+                <td className="incDecContainer">
                   <div className="incDecRow">
-                    <span onClick={() => this.incNumber(productBag)} className="glyphicon glyphicon-plus-sign incImg"></span>
+                    {this.props.remove ?
+                      ""
+                      :  
+                      <span onClick={() => this.incNumber(productBag)} className="glyphicon glyphicon-plus-sign incImg"></span>
+                    }
                     <span className="numberOfProduct">{productBag.numberOfProduct}</span>
-                    <span onClick={() => this.decNumber(productBag)}  className="glyphicon glyphicon-minus-sign decImg"></span>
+                    {this.props.remove ?
+                      ""
+                      :  
+                      <span onClick={() => this.decNumber(productBag)}  className="glyphicon glyphicon-minus-sign decImg"></span>
+                    }
                   </div>
-                </div>
-                <div className="col-lg-4 col-md-4 col-sm-4 priceContainer">
+                </td>
+                <td className="priceContainer">
                   <div className="realPriceRow">
                     <span className="realPriceTitle">قیمت واحد</span>
                     <span className="realPrice">{productBag.price} تومان</span>
@@ -261,17 +275,28 @@ class ProductBag extends React.Component{
                     <span className="finalPriceTitle">قیمت نهایی</span>
                     <span className="finalPrice">{productBag.price * (100 - productBag.percent) / 100 * productBag.numberOfProduct} تومان</span>
                   </div>
-                </div>
-                <div className="removePanel">
-                  <span className="glyphicon glyphicon-remove removeProduct"></span>
-                </div>
-              </div>
+                </td>
+                {this.props.remove ?
+                  ""
+                  :  
+                  <td className="removePanel">
+                    <span className="glyphicon glyphicon-remove removeProduct"></span>
+                  </td>
+                }
+              </tr>
             )}
-          </div>
+          </tbody>
+        </table>
+        <div className="bottomPart">
+          ارسال به آدرس شماره یک، شهر شماره یک، خیابان شماره یک، در تاریخ 97/2/23، ساعت 00:00
         </div>
       </div>
     );
   }
+}
+
+ProductBag.defaultProps = {
+  remove: "",
 }
 
 export default ProductBag

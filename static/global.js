@@ -8,6 +8,7 @@ const global = {
   badgeColor: "rgb(239, 90, 136)",
   darkBadgeColor: "rgb(206, 78, 118)",
   progressFill: "rgb(54, 171, 176)",
+  redFemale: "rgb(223, 75, 106)",
 }
 
 export default global;

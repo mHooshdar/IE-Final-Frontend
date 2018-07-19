@@ -62,8 +62,10 @@ class Bag extends React.Component{
             cursor: pointer;
           }
         `}</style>
-        <Progress ref={(progress) => {this.progress = progress;}}/>
-        {this.renderProgressBodyPart()}
+        <div className="container">
+          <Progress ref={(progress) => {this.progress = progress;}}/>
+          {this.renderProgressBodyPart()}
+        </div>
         <div className="submitButton" onClick={this.goNext}>
           ثبت و مرحله بعد
         </div>
