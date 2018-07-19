@@ -4,6 +4,9 @@ import Information from '../components/product/Information';
 import ProductDetail from '../components/product/ProductDetail';
 
 class Product extends React.Component{
+  static async getInitialProps({ query }) {
+    return { query }
+  }
   render () {
     return (
       <Layout>
@@ -16,8 +19,8 @@ class Product extends React.Component{
             background: rgb(245, 245, 245);
           }
         `}</style>
-        <ProductDetail/>
-        <Information/>
+        <ProductDetail id={this.props.query.id}/>
+        <Information  id={this.props.query.id}/>
         <div className="favoritesAndNewsContainer">
           <FavoritesAndNewsCarousel mode={2}/>
         </div>

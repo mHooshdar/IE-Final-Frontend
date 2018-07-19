@@ -1,5 +1,6 @@
 import ReactModal from 'react-modal';
 import global from '../../static/global';
+import axios from 'axios';
 
 ReactModal.setAppElement('#__next');
 
@@ -14,10 +15,17 @@ class RegisterLoginModal extends React.Component {
     this.state = {
       showModal: false,
       textShow: 'ورود',
-      mode: 0
+      mode: 0,
     };
+    this.value={
+      username: "",
+      password: ""
+    }
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
+    this.sendRequest = this.sendRequest.bind(this);
+    this.handleOnChangePassword = this.handleOnChangePassword.bind(this);
+    this.handleOnChangeUsername = this.handleOnChangeUsername.bind(this);
   }
   
   handleOpenModal (mode) {
@@ -31,6 +39,51 @@ class RegisterLoginModal extends React.Component {
   
   handleCloseModal () {
     this.setState({ showModal: false });
+  }
+  handleOnChangeUsername(event) {
+    this.value.username = event.target.value;
+  }
+  handleOnChangePassword(event) {
+    this.value.password = event.target.value;
+  }
+
+  sendRequest(event){
+    event.preventDefault();
+    let self = this;
+    let myUrl="";
+    if(this.state.mode == 0){
+      myUrl = "/login";
+    }
+    else{
+      myUrl = "/register";
+    }
+    var formBody = [];
+    for (var property in this.value) {
+      var encodedKey = encodeURIComponent(property);
+      var encodedValue = encodeURIComponent(this.value[property]);
+      formBody.push(encodedKey + "=" + encodedValue);
+    }
+    formBody = formBody.join("&");
+    axios({
+      method: 'POST',
+      url: global.host + myUrl,
+      data: formBody,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      }
+    })
+    .then(function (response) {
+      if(response.data.success == "true"){
+        self.props.loginHandler(response.data.username);
+        self.setState({ showModal: false });
+      }
+      else{
+        self.setState({ showModal: false });
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
   }
 
   render () {
@@ -159,15 +212,15 @@ class RegisterLoginModal extends React.Component {
           className='modalContent'
           overlayClassName='modalOverlay'
         >
-          <form method='POST' className='loginRegisterForm'>
+          <form onSubmit={this.sendRequest} className='loginRegisterForm'>
             <button onClick={this.handleCloseModal} className="myClose close">
               <span>&times;</span>
             </button>
             <p className='modalHead'>{this.state.showText}</p>
             <label className='myLabel'>شماره تلفن یا ایمیل</label>
-            <input type='text' name='emailOrUername' className='contactUsTextfield' placeholder='abc@abc.abc' dir='ltr'/>
+            <input onChange={this.handleOnChangeUsername} type='text' name='emailOrUername' className='contactUsTextfield' placeholder='abc@abc.abc' dir='ltr' required/>
             <label className='myLabel'>رمز عبور</label>
-            <input type='password' name='password' className='contactUsTextfield' placeholder='رمزعبور' dir='ltr'/>
+            <input onChange={this.handleOnChangePassword} type='password' name='password' className='contactUsTextfield' placeholder='رمزعبور' dir='ltr' required/>
             <div className='forgotContainer'>
               <span className='forgotText'>رمز عبور خود را فراموش کرده اید؟</span>
               <a href='#' className='forgotLink'> کلیک کنید</a>

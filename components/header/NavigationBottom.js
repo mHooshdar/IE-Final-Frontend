@@ -1,4 +1,5 @@
 import global from '../../static/global';
+import Link from 'next/link';
 
 class NavigationBottom extends React.Component{
   render () {
@@ -31,16 +32,24 @@ class NavigationBottom extends React.Component{
         `}</style>
         <div className="row">
           <div className="col-lg-2 col-md-2 col-sm-2 col-xs-4">
-            <a href="#" className="navigationItem">مردانه</a>
+            <Link href={`/category?filter=مردانه`}>
+              <a className="navigationItem">مردانه</a>
+            </Link>
           </div>
           <div className="col-lg-2 col-md-2 col-sm-2 col-xs-4">
-            <a href="#" className="navigationItem">زنانه</a>
+            <Link href={`/category?filter=زنانه`}>
+              <a className="navigationItem">زنانه</a>
+            </Link>
           </div>
           <div className="col-lg-2 col-md-2 col-sm-2 col-xs-4">
-            <a href="#" className="navigationItem">بچه گانه</a>
+            <Link href={`/category?filter=بچه گانه`}>
+              <a className="navigationItem">بچه گانه</a>
+            </Link>
           </div>
           <div className="col-lg-2 col-md-2 col-sm-2 col-xs-4">
-            <a href="#" className="navigationItem">ورزشی</a>
+            <Link href={`/category?filter=ورزشی`}>
+              <a className="navigationItem">ورزشی</a>
+            </Link>
           </div>
           <div className="col-lg-2 col-md-2 col-sm-2 col-xs-4">
             <a href="#" className="navigationItem">تخفیف</a>

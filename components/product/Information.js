@@ -1,51 +1,25 @@
 import global from '../../static/global';
+import axios from "axios";
 
 class Information extends React.Component{
   constructor (props) {
     super(props);
-
-    this.informations = [
-      {
-        id: 1,
-        key: "جنس",
-        value: "نخ"
-      },
-      {
-        id: 2,
-        key: "فرم",
-        value: "معمولی"
-      },
-      {
-        id: 3,
-        key: "مورد استفاده",
-        value: "روزمره"
-      },
-      {
-        id: 4,
-        key: "قد آستین",
-        value: "بلند"
-      },
-      {
-        id: 5,
-        key: "یقه",
-        value: "هفت"
-      },
-      {
-        id: 6,
-        key: "طرح پارچه",
-        value: "طرح دار"
-      },
-      {
-        id: 7,
-        key: "فصل تولید",
-        value: "بهار / تابستان 2018"
-      },
-      {
-        id: 8,
-        key: "کد کالا",
-        value: "Red-1711027"
-      },
-    ]
+    // props : id
+    this.state = {
+      informations: []
+    }
+  }
+  componentDidMount(){
+    const self = this;
+    axios.get(global.host + "/information/" + self.props.id)
+    .then(function (response) {
+      self.setState({
+        informations: response.data
+      })
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
   }
 
   render () {
@@ -168,7 +142,7 @@ class Information extends React.Component{
             <div className="informationPanelContainer">
               <table className="table table-striped">
                 <tbody>
-                  {this.informations.map((information) => 
+                  {this.state.informations.map((information) => 
                     <tr className="tableInformationRow">
                       <td className="tableInformationCell">{information.key}</td>
                       <td className="tableInformationCell">{information.value}</td>

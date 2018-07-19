@@ -1,4 +1,5 @@
 import global from '../../static/global';
+import Link from 'next/link';
 
 class Category extends React.Component{
   render () {
@@ -67,11 +68,12 @@ class Category extends React.Component{
             }
           }
         `}</style>
-        
-        <a href ={this.props.href}>
-          <img src={this.props.src} alt="male" className="itemImages"/>
-          <div className="itemText">{this.props.text}</div>
-        </a>
+        <Link href={`/category?filter=${this.props.href}`}>
+          <a>
+            <img src={this.props.src} alt="male" className="itemImages"/>
+            <div className="itemText">{this.props.text}</div>
+          </a>
+        </Link>
       </div>
     );
   }

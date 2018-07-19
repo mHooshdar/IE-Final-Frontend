@@ -6,14 +6,16 @@ class DetailsPanel extends React.Component{
   constructor (props) {
     super(props);
 
-    this.selectedColor= {
-      title: "قرمز",
-      color: "ea0001"
-    };
-    this.selectedSize= {
-    };
-  }
+    this.state={
+      selectedColor: {},
+      selectedSize: {},
+    }
 
+    this.colorClick = this.colorClick.bind(this);
+  }
+  colorClick(color){
+    this.setState({selectedColor: color});
+  }
   render () {
     return (
       <div>
@@ -197,11 +199,11 @@ class DetailsPanel extends React.Component{
           </div>
         }
         <p className="productColor">
-          رنگ : <span style={{"color": "#" + this.selectedColor.color}}>{this.selectedColor.title}</span>
+          رنگ : <span style={{"color": "#" + this.state.selectedColor.color}}>{this.state.selectedColor.title}</span>
         </p>
         <div>
           {this.props.colors.map((color) => 
-            <div className="colorContainer" title={color.title} style={{"backgroundColor": "#" + color.color}}></div>
+            <div className="colorContainer" onClick={() => {this.colorClick(color)}}title={color.title} style={{"backgroundColor": "#" + color.color}}></div>
           )}
         </div>
         <div className="selectContainer">

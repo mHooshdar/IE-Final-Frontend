@@ -1,13 +1,30 @@
 import Category from './Category';
 
 class CategoryBanner extends React.Component{
+  constructor (props) {
+    super(props);
+
+    this.state = {
+      banners:[
+        {
+          bannerURL: "",
+          bannerLink: "",
+        }
+      ]
+    }
+  }
+  getComplete(data){
+    this.setState({
+      banners: data
+    });
+  }
   render () {
     return (
       <div className="categoryBanner">
         <div className="row">
-          <Category src='/static/images/index/male.jpg' alt="male" href="#" text="مردانه"/>
-          <Category src='/static/images/index/kids.jpg' alt="male" href="#" text="بچه گانه"/>
-          <Category src='/static/images/index/female.jpg' alt="male" href="#" text="زنانه"/>
+        {this.state.banners.map((banner) =>
+          <Category src={banner.bannerURL} alt="male" href={banner.bannerLink} text={banner.bannerLink}/>
+        )}
         </div>
       </div>
     );

@@ -1,4 +1,5 @@
 import global from '../../static/global';
+import Link from 'next/link';
 
 class Product extends React.Component{
   /*
@@ -26,8 +27,8 @@ class Product extends React.Component{
   
   render () {
     return (
-      // href must come from parent
-      <a href="#" className="product" onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave}>
+      <div>
+
         <style jsx>{`
           .product{
             position: relative;
@@ -119,29 +120,33 @@ class Product extends React.Component{
             }
           }
         `}</style>
-        {this.props.percent ?
-          <div className="myBadge">%{this.props.percent}</div>
-          :
-          ''
-        }
-        <div className="fader">
-          <img className="productImage" src={this.props.src} alt={this.props.productName}/>
-          <img id={"productImg" + this.props.id} className="productImage2" src={this.props.src2} alt={this.props.productName} style={{display: "none"}}/>
-        </div>​
-        
-        <p className="brandName">{this.props.brandName}</p>
-        <p className="productName">{this.props.productName}</p>
-        {this.props.percent ?
-          <div>
-            <span className="realPriceOff">{this.props.price} تومان</span>
-            <span className="offPrice">{this.props.price * (100 - this.props.percent) / 100} تومان</span>
-          </div>
-          :
-          <div>
-            <span className="price">{this.props.price} تومان</span>
-          </div>
-        }
-      </a>
+        <Link href={`/product?id=${this.props.id}`}>
+          <a className="product" onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave}>
+            {this.props.percent ?
+              <div className="myBadge">%{this.props.percent}</div>
+              :
+              ''
+            }
+            <div className="fader">
+              <img className="productImage" src={this.props.src} alt={this.props.productName}/>
+              <img id={"productImg" + this.props.id} className="productImage2" src={this.props.src2} alt={this.props.productName} style={{display: "none"}}/>
+            </div>​
+            
+            <p className="brandName">{this.props.brandName}</p>
+            <p className="productName">{this.props.productName}</p>
+            {this.props.percent ?
+              <div>
+                <span className="realPriceOff">{this.props.price} تومان</span>
+                <span className="offPrice">{this.props.price * (100 - this.props.percent) / 100} تومان</span>
+              </div>
+              :
+              <div>
+                <span className="price">{this.props.price} تومان</span>
+              </div>
+            }
+          </a>
+        </Link>
+      </div>
     );
   }
 }

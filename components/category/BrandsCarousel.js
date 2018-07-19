@@ -1,60 +1,53 @@
 import global from '../../static/global';
 import Brand from './Brand';
 
+import axios from "axios";
+
 class BrandsCarousel extends React.Component{
   constructor (props) {
     super(props);
-    this.brands = [
-      {
-        id: 1,
-        src:"/static/images/category/tb1.jpg",
-        brandName:"Defacto",
-      },
-      {
-        id: 2,
-        src:"/static/images/category/tb2.jpg",
-        brandName:"LC Waikiki",
-      },
-      {
-        id: 3,
-        src:"/static/images/category/tb3.jpg",
-        brandName:"Debenhams",
-      },
-      {
-        id: 4,
-        src:"/static/images/category/tb4.jpg",
-        brandName:"Monsoon",
-      },
-    ];
+    this.state = {
+      brands: []
+    }
   }
 
   componentDidMount(){
-    var carouselEl = $('#brandsOwl').owlCarousel({
-      rtl: true,
-      margin: 30,
-      dots: false,
-      animateOut: 'slideOutDown',
-      animateIn: 'flipInX',
-      smartSpeed:200,
-      responsive:{
-        0:{
-          items: 1
-        },
-        768: {
-          items: 1
-        },
-        992:{
-          items: 2
+    const self = this;
+    axios.get(global.host + "/brandsList")
+    .then(function (response) {
+      self.setState({
+        brands: response.data
+      })
+      var carouselEl = $('#brandsOwl').owlCarousel({
+        rtl: true,
+        margin: 30,
+        dots: false,
+        animateOut: 'slideOutDown',
+        animateIn: 'flipInX',
+        smartSpeed:200,
+        responsive:{
+          0:{
+            items: 1
+          },
+          768: {
+            items: 1
+          },
+          992:{
+            items: 2
+          }
         }
-      }
-    });
-    $("#nextBrands").click(function() {
-      carouselEl.trigger('next.owl.carousel');
-    });
-
-    $("#prevBrands").click(function() {
-      carouselEl.trigger('prev.owl.carousel');
-    });
+      });
+      $("#nextBrands").click(function() {
+        carouselEl.trigger('next.owl.carousel');
+      });
+  
+      $("#prevBrands").click(function() {
+        carouselEl.trigger('prev.owl.carousel');
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
   }
   render () {
     return (
@@ -128,7 +121,7 @@ class BrandsCarousel extends React.Component{
         `}</style>
         <p className="brandsText">جدیدترین برندها</p>
         <div className="owl-carousel owl-theme brandsOwl" id="brandsOwl">
-          {this.brands.map((brand) => 
+          {this.state.brands.map((brand) => 
             <Brand brandName={brand.brandName} src={brand.src}/>
           )}
         </div>

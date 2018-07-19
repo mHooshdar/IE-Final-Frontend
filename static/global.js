@@ -1,4 +1,6 @@
 const global = {
+  host: "http://localhost:8000",
+
   gray: "rgb(110, 110, 110)",
   blue: "rgb(59, 85, 230)",
   darkBlue: "rgb(43, 62, 168)",

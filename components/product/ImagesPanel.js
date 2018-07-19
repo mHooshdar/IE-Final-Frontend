@@ -8,23 +8,20 @@ class ImagesPanel extends React.Component{
 
     this.mouseEnter = this.mouseEnter.bind(this);
   }
-  mouseEnter(target, data){
-    console.log(target.src);
+  mouseEnter(data){
     $("#productBigImg").attr("src", data);
   }
-  componentDidMount(){
-    $(document).ready(function() {
-      $('select').niceSelect();
-      var mySwiper = new Swiper ('.swiper-container', {
-        direction: 'vertical',
-        slidesPerView: 'auto',
-        spaceBetween: 10,
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        },
-      })
-    });
+  getComplete(){
+    $('select').niceSelect();
+    var mySwiper = new Swiper ('.swiper-container', {
+      direction: 'vertical',
+      slidesPerView: 'auto',
+      spaceBetween: 10,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    })
   }
 
   render () {
@@ -67,7 +64,7 @@ class ImagesPanel extends React.Component{
           <div className="swiper-container myCustomSwiper">
             <div className="swiper-wrapper myCustomSwiperWrapper">
               {this.props.srcs.map((src) => 
-                <img className="swiper-slide productSwiperImage" src={src} onMouseEnter={((e) => this.mouseEnter(e, src))}/>
+                <img className="swiper-slide productSwiperImage" src={src} onMouseEnter={() => this.mouseEnter(src)}/>
               )}
             </div>
             <div className="swiper-button-prev swiper-button-black myPrev"></div>

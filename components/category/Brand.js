@@ -12,7 +12,7 @@ class Brand extends React.Component{
   render () {
     return (
       // href must come from parent
-      <a href="#" className="row brand">
+      <div href="#" className="row brand">
         <style jsx>{`
           .brand{
             border: 2px solid ${global.gray};
@@ -20,6 +20,9 @@ class Brand extends React.Component{
             display: block;
             margin: 0;
             padding: 0;
+          }
+          .brand:hover{
+            cursor:pointer;
           }
           .brandName{
             margin-top: 30%;
@@ -63,12 +66,12 @@ class Brand extends React.Component{
         `}</style>
         <div className="col-xs-6 rightSide">
           <p className="brandName">{this.props.brandName}</p>
-          <a href="#" className="blockButton signInBtn">خرید</a>
+          <div href="#" className="blockButton signInBtn">خرید</div>
         </div>
         <div className="col-xs-6 leftSide">
           <img className="brandImage" src={this.props.src} alt={this.props.brandName}/>
         </div>
-      </a>
+      </div>
     );
   }
 }

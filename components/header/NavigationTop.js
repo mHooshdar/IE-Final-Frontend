@@ -7,19 +7,26 @@ class NavigationTop extends React.Component{
   constructor () {
     super();
     this.state = {
-      user: {
-        name: 'محمد هوشدار',
-        bag: 10
-      }
+      user: ''
     };
     this.onSignInClick = this.onSignInClick.bind(this);
     this.onSignUpClick = this.onSignUpClick.bind(this);
+    this.changeUserState = this.changeUserState.bind(this);
   }
   onSignInClick() {
     this.signInSignUpModal.handleOpenModal(0);
   }
   onSignUpClick(){
     this.signInSignUpModal.handleOpenModal(1);
+  }
+
+  changeUserState(data){
+    this.setState({
+      user: {
+        name: data,
+        bag: 0
+      }
+    });
   }
 
   render () {
@@ -238,7 +245,7 @@ class NavigationTop extends React.Component{
               </div>
             </div>
           </form>
-          <RegisterLoginModal ref={(modal) => { this.signInSignUpModal = modal; }}/>
+          <RegisterLoginModal ref={(modal) => { this.signInSignUpModal = modal; }} loginHandler={(data) => this.changeUserState(data)}/>
         </div>
       </div>
     );

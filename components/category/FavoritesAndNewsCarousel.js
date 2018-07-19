@@ -1,6 +1,8 @@
 import global from '../../static/global';
 import Product from './Product';
 
+import axios from "axios";
+
 class FavoritesAndNewsCarousel extends React.Component{
   /* props: {
     mode: number // 0 => favorites, 1 => news, 2 => LinkedProducts
@@ -9,76 +11,52 @@ class FavoritesAndNewsCarousel extends React.Component{
   constructor (props) {
     super(props);
     this.state = {
-      showText: ''
+      showText: '',
+      products: []
     }
-    // we have to get this from server
-    this.products = [
-      {
-        id: 1,
-        src:"/static/images/category/t1.jpg",
-        src2: "/static/images/category/t2.jpg",
-        brandName:"Defacto",
-        productName:"سویشرت یقه گرد دخترانه",
-        price:98000
-      },
-      {
-        id: 2,
-        percent:80,
-        src:"/static/images/category/t1.jpg",
-        src2: "/static/images/category/t2.jpg",
-        brandName:"Defacto",
-        productName:"سویشرت یقه گرد دخترانه",
-        price:98000
-      },
-      {
-        id: 3,
-        percent:49,
-        src:"/static/images/category/t2.jpg",
-        src2: "/static/images/category/t3.jpg",
-        brandName:"Zooburg",
-        productName:"عینک آفتابی کمربندی بچه گانه",
-        price:225000
-      },
-      {
-        id: 4,
-        percent:0,
-        src:"/static/images/category/t3.jpg",
-        src2: "/static/images/category/t4.jpg",
-        brandName:"LC Waikiki",
-        productName:"تی شرت نخی یقه گرد پسرانه" ,
-        price:98000
-      },
-      {
-        id: 5,
-        percent:17,
-        src:"/static/images/category/t4.jpg",
-        src2: "/static/images/category/t1.jpg",
-        brandName:"آر ان اس",
-        productName:"تی شرت نخی یقه گرد دخترانه",
-        price:98000
-      },
-    ];
   }
 
   componentDidMount(){
-    var carouselEl = $('#favoritesAndNewsOwl' + this.props.mode).owlCarousel({
-      rtl: true,
-      margin: 30,
-      dots: false,
-      animateOut: 'slideOutDown',
-      animateIn: 'flipInX',
-      smartSpeed:750,
-      autoWidth:true,
-    });
+    const self = this;
+    let url = "";
 
-    $("#nextFavoritesAndNews" + this.props.mode).click(function() {
-      carouselEl.trigger('next.owl.carousel');
-    });
+    if(this.props.mode == 0){
+      url = "/favoriteProducts";
+    }
+    else if(this.props.mode == 1){
+      url = "/newProducts"
+    }
+    else if(this.props.mode == 2){
+      url = "/linkedProducts";
+    }
+    axios.get(global.host + url)
+    .then(function (response) {
+      self.setState({
+        products: response.data
+      })
 
-    $("#prevFavoritesAndNews" + this.props.mode).click(function() {
-      carouselEl.trigger('prev.owl.carousel');
-    });
-    
+      var carouselEl = $('#favoritesAndNewsOwl' + self.props.mode).owlCarousel({
+        rtl: true,
+        margin: 30,
+        dots: false,
+        animateOut: 'slideOutDown',
+        animateIn: 'flipInX',
+        smartSpeed:750,
+        autoWidth:true,
+      });
+  
+      $("#nextFavoritesAndNews" + self.props.mode).click(function() {
+        carouselEl.trigger('next.owl.carousel');
+      });
+  
+      $("#prevFavoritesAndNews" + self.props.mode).click(function() {
+        carouselEl.trigger('prev.owl.carousel');
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+
     if(this.props.mode == 0){
       this.setState({showText: 'محبوب ترین ها'});
     }
@@ -161,7 +139,7 @@ class FavoritesAndNewsCarousel extends React.Component{
         `}</style>
         <p className="favoritesAndNewsText">{this.state.showText}</p>
         <div className="owl-carousel owl-theme favoritesAndNewsOwl" id={"favoritesAndNewsOwl" + this.props.mode}>
-          {this.products.map((product) => 
+          {this.state.products.map((product) =>
             <Product id={product.id} percent={product.percent} src={product.src} src2={product.src2} brandName={product.brandName} productName={product.productName} price={product.price}/>
           )}
         </div>

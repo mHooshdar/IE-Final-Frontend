@@ -1,13 +1,27 @@
 import global from '../../static/global';
 
 class JoinUs extends React.Component{
+  constructor (props) {
+    super(props);
+
+    this.state = {
+      aboutUsText: ""
+    }
+  }
+
+  getComplete(data){
+    this.setState({
+      aboutUsText: data
+    });
+  }
+
   render () {
     return (
       <div>
         <style jsx>{`
-        .joinUs{
-        margin: 0px;
-        }
+          .joinUs{
+            margin: 0px;
+          }
           .aboutCell{
             height: 318px;
             margin-bottom: 20px;
@@ -138,7 +152,7 @@ class JoinUs extends React.Component{
           }
         `}</style>
         <div className="joinUs row">
-          <p className="aboutHead">بهترین ها را از ما خرید کنید</p>
+          <p className="aboutHead">{this.state.aboutUsText}</p>
           <div className="col-lg-8 col-md-8 col-sm-7 col-xs-12 allBrandBox aboutCell">
             <img className="allBrands" src="/static/images/index/all-brands.png"/>
             <a href="#" className="allBrandsButton">تمام برندهای معتبر را با ما تجربه کنید</a>
