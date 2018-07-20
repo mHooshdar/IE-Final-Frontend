@@ -1,4 +1,5 @@
 import global from '../../static/global';
+import axios from "axios";
 
 class Orders extends React.Component{
   constructor (props) {
@@ -7,39 +8,7 @@ class Orders extends React.Component{
     this.count = 1;
 
     this.state = {
-      orders: [
-        {
-          id: 1,
-          date: "2018/01/01",
-          price: "199000",
-          state: "تحویل شده",
-        },
-        {
-          id: 1,
-          date: "2018/01/01",
-          price: "199000",
-          state: "تحویل شده",
-        },
-        {
-          id: 1,
-          date: "2018/01/01",
-          price: "199000",
-          state: "تحویل شده",
-        },
-        {
-          id: 1,
-          date: "2018/01/01",
-          price: "199000",
-          state: "تحویل شده",
-        },
-        {
-          id: 1,
-          date: "2018/01/01",
-          price: "199000",
-          state: "تحویل شده",
-        }
-      ],
-
+      orders: [],
       orderOpen: false,
     }
     this.toggleOrders = this.toggleOrders.bind(this);
@@ -50,6 +19,18 @@ class Orders extends React.Component{
     this.setState(prevState => {
       return {orderOpen: !prevState.orderOpen}
     });
+  }
+  componentDidMount(){
+    const self = this;
+    axios.get(global.host + "/orders/" + self.props.id)
+    .then(function (response) {
+      self.setState({
+        ["orders"]: response.data
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
   }
   render () {
     return (

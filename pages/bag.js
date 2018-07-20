@@ -7,6 +7,10 @@ import Delivery from '../components/bag/Delivery';
 
 class Bag extends React.Component{
 
+  static async getInitialProps({ query }) {
+    return { query }
+  }
+
   constructor (props) {
     super(props);
 
@@ -24,17 +28,17 @@ class Bag extends React.Component{
 
   renderProgressBodyPart(){
     if(this.state.step == 1){
-      return <ProductBag/>;
+      return <ProductBag id={this.props.query.id}/>;
     }
     else if(this.state.step == 2){
       // send step2 to progress
       this.progress.setState({step2: true});
-      return <Delivery/>;
+      return <Delivery id={this.props.query.id}/>;
     }
     else if(this.state.step == 3){
       // send step2 to progress
       this.progress.setState({step3: true});
-      return <Delivery/>;
+      return <Delivery id={this.props.query.id}/>;
     }
   }
   render () {

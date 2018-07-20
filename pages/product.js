@@ -20,7 +20,7 @@ class Product extends React.Component{
           }
         `}</style>
         <ProductDetail id={this.props.query.id}/>
-        <Information  id={this.props.query.id}/>
+        <Information id={this.props.query.id}/>
         <div className="favoritesAndNewsContainer">
           <FavoritesAndNewsCarousel mode={2}/>
         </div>

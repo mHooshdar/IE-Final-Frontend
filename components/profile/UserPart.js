@@ -1,19 +1,112 @@
 import global from '../../static/global';
+import axios from "axios";
 
 class UserPart extends React.Component{
   constructor (props) {
     super(props);
 
     this.state= {
-      user: {
-        src: "/static/images/profile/user.png",
-        name: "محمد هوشدار",
-        city: "قم",
-        phoneNumber: "09379439798",
-        homePhone: "0212222222",
-        date: "2018-01-01",
-        cardNumber: "987876765672189",
-        password: "123456",
+      password: "",
+      newPassword: "",
+      newPasswordAgain: "",
+    }
+
+    this.sendRequest = this.sendRequest.bind(this);
+
+    this.handleOnChangeInput = this.handleOnChangeInput.bind(this);
+  }
+
+  handleOnChangeInput(event) {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
+  }
+  componentDidMount(){
+    const self = this;
+    axios.get(global.host + "/user/" + self.props.id)
+    .then(function (response) {
+      Object.keys(response.data).forEach(element => {
+        self.setState({
+          [element]: response.data[element]
+        });
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+  }
+
+  sendRequest(event){
+    event.preventDefault();
+    let self = this;
+
+    if(this.state.password == ""){
+      return;
+    }
+    else{
+      if(this.state.newPassword != ""){
+        if(this.state.newPassword == this.state.newPasswordAgain){
+          var formBody = [];
+
+          var encodedKey = encodeURIComponent("password");
+          var encodedValue = encodeURIComponent(this.state.password);
+          formBody.push(encodedKey + "=" + encodedValue);
+
+          var encodedKey = encodeURIComponent("newPassword");
+          var encodedValue = encodeURIComponent(this.state.newPassword);
+          formBody.push(encodedKey + "=" + encodedValue);
+
+          var encodedKey = encodeURIComponent("newPasswordAgain");
+          var encodedValue = encodeURIComponent(this.state.newPasswordAgain);
+          formBody.push(encodedKey + "=" + encodedValue);
+          
+          formBody = formBody.join("&");
+
+          axios({
+            method: 'PUT',
+            url: global.host + "/changePassword/" + self.props.id,
+            data: formBody,
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+            }
+          })
+          .then(function (response) {
+            window.alert(response.data.desc);
+          })
+          .catch(function (error) {
+            console.log(error);
+          })
+        }
+        else{
+          window.alert("رمز عبور وارد شده با هم برابر نیستند");
+        }
+      }
+      else{
+        var formBody = [];
+        for (var property in this.state) {
+          var encodedKey = encodeURIComponent(property);
+          var encodedValue = encodeURIComponent(this.state[property]);
+          formBody.push(encodedKey + "=" + encodedValue);
+        }
+        formBody = formBody.join("&");
+        axios({
+          method: 'PUT',
+          url: global.host + "/user/" + self.props.id,
+          data: formBody,
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          }
+        })
+        .then(function (response) {
+          window.alert(response.data.desc);
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
       }
     }
   }
@@ -156,13 +249,13 @@ class UserPart extends React.Component{
             margin-bottom: 40px;
           }
           .submitButton{
+            display: block;
             position: relative;
             right: 5px;
             top: 25px;
             border: 1px solid ${global.gray};
             text-align: center;
             width: 250px;
-            margin-right: auto;
             color: rgb(255, 255, 255);
             background: ${global.blue};
             font-size: 15px;
@@ -171,9 +264,6 @@ class UserPart extends React.Component{
             margin-top: 30px;
             margin-right: auto;
             margin-left: auto;
-          }
-          .submitButton:hover{
-            cursor: pointer;
           }
           @media (max-width: 767px) {
             .imageAndNamePart{
@@ -190,9 +280,9 @@ class UserPart extends React.Component{
         `}</style>
         <div className="imageAndNamePart">
           <p className="userName">
-            {this.state.user.name}
+            {this.state.name}
           </p>
-          <img className="userImage" src={this.state.user.src}/>
+          <img className="userImage" src={this.state.src ? this.state.src : "/static/images/profile/user.png"}/>
           <p className="gender">
             جنسیت
           </p>
@@ -229,55 +319,55 @@ class UserPart extends React.Component{
             </p>
           </div>
         </div>
-        <div className="userDetailRow">
+        <form id="userForm" onSubmit={this.sendRequest} className="userDetailRow">
           <div className="myTextfieldRow">
             <div className="textfieldContainerRight">
               <label htmlFor="name" className="userProfileLabel">نام و نام خانوادگی</label>
-              <input name="name" className="userProfileTextfield" type="text" placeholder="نام را وارد کنید" defaultValue={this.state.user.name}/>
+              <input onChange={this.handleOnChangeInput} name="name" className="userProfileTextfield" type="text" placeholder="نام را وارد کنید" value={this.state.name}/>
             </div>
             <div className="textfieldContainerLeft">
               <label htmlFor="city" className="userProfileLabel">شهر</label>
-              <input name="city" className="userProfileTextfield" type="text" placeholder="شهر را وارد کنید" defaultValue={this.state.user.city}/>
+              <input onChange={this.handleOnChangeInput} name="city" className="userProfileTextfield" type="text" placeholder="شهر را وارد کنید" value={this.state.city}/>
             </div>
           </div>
           <div className="myTextfieldRow">
             <div className="textfieldContainerRight">
               <label htmlFor="phoneNumber" className="userProfileLabel">شماره تلفن همراه</label>
-              <input name="phoneNumber" className="userProfileTextfield" type="text" placeholder="11 رقم" defaultValue={this.state.user.phoneNumber}/>
+              <input onChange={this.handleOnChangeInput} name="phoneNumber" className="userProfileTextfield" type="text" placeholder="11 رقم" value={this.state.phoneNumber}/>
             </div>
             <div className="textfieldContainerLeft">
               <label htmlFor="number" className="userProfileLabel">شماره تلفن ثابت</label>
-              <input name="number" className="userProfileTextfield" type="text" placeholder="11 رقم" defaultValue={this.state.user.homePhone}/>
+              <input onChange={this.handleOnChangeInput} name="homePhone" className="userProfileTextfield" type="text" placeholder="11 رقم" value={this.state.homePhone}/>
             </div>
           </div>
           <div className="myTextfieldRow">
             <div className="textfieldContainerRight">
               <label htmlFor="birthdate" className="userProfileLabel">تاریخ تولد</label>
-              <input name="birthdate" className="userProfileTextfield" type="date" placeholder="تاریخ" defaultValue={this.state.user.date}/>
+              <input onChange={this.handleOnChangeInput} name="date" className="userProfileTextfield" type="date" placeholder="تاریخ" value={this.state.date}/>
             </div>
             <div className="textfieldContainerLeft">
               <label htmlFor="cardNumber" className="userProfileLabel">شماره کارت 16 رقمی</label>
-              <input name="cardNumber" className="userProfileTextfield" type="text" placeholder="اختیاری" defaultValue={this.state.user.cardNumber}/>
+              <input onChange={this.handleOnChangeInput} name="cardNumber" className="userProfileTextfield" type="text" placeholder="اختیاری" value={this.state.cardNumber}/>
             </div>
           </div>
           <div className="passwordRow">
             <div className="passwordRight">
               <label htmlFor="curPass" className="userProfileLabel">رمز عبور فعلی</label>
-              <input name="curPass" className="userProfileTextfield" type="password"/>
+              <input onChange={this.handleOnChangeInput} name="password" className="userProfileTextfield" type="password"/>
             </div>
             <div className="passwordCenter">
               <label htmlFor="newPass" className="userProfileLabel">رمز عبور جدید</label>
-              <input name="newPass" className="userProfileTextfield" type="password"/>
+              <input onChange={this.handleOnChangeInput} name="newPassword" className="userProfileTextfield" type="password"/>
             </div>
             <div className="passwordLeft">
               <label htmlFor="againNewPass" className="userProfileLabel">تکرار رمز عبور جدید</label>
-              <input name="againNewPass" className="userProfileTextfield" type="password"/>
+              <input onChange={this.handleOnChangeInput} name="newPasswordAgain" className="userProfileTextfield" type="password"/>
             </div>
           </div>
-        </div>
-        <div className="submitButton">
+        </form>
+        <button form="userForm" type='submit' className="submitButton">
           ثبت تغییرات
-        </div>
+        </button>
       </div>
     );
   }

@@ -7,14 +7,35 @@ class DetailsPanel extends React.Component{
     super(props);
 
     this.state={
-      selectedColor: {},
-      selectedSize: {},
+      selectedColor: "",
+      selectedSize: "",
     }
 
     this.colorClick = this.colorClick.bind(this);
+    this.addToBag = this.addToBag.bind(this);
   }
   colorClick(color){
     this.setState({selectedColor: color});
+  }
+  addToBag(){
+    if(this.state.selectedColor != "" && this.state.selectedSize != ""){
+      // addd to bag
+    }
+    else{
+      window.alert("رنگ و نام را انتخاب کنید");
+    }
+  }
+  componentDidMount(){
+    const self = this;
+    $(document).on('click.customSelect', '.customSelect .option:not(.disabled)', function(event) {
+      var $option = $(this);
+      if($option[0].attributes["data-value"].value != "none"){
+        self.setState({selectedSize: $option[0].innerText});
+      }
+    });
+  }
+  componentWillUnmount(){
+    $(document).off('click.customSelect', '.customSelect .option:not(.disabled)', function(event) {});
   }
   render () {
     return (
@@ -208,7 +229,7 @@ class DetailsPanel extends React.Component{
         </div>
         <div className="selectContainer">
           <select className="customSelect">
-            <option data-display="انتخاب کنید" value="">انتخاب کنید</option>
+            <option data-display="انتخاب کنید" value="none">انتخاب کنید</option>
             {this.props.sizes.map((size) => 
               <option value={size}>{size}</option>
             )}
@@ -216,7 +237,7 @@ class DetailsPanel extends React.Component{
           <span className="sizeHelp">راهنمای سایز</span>
         </div>
         <div className="addToBagContainer">
-          <button className="addToBag">
+          <button onClick={this.addToBag} className="addToBag">
             <span className="glyphicon glyphicon-shopping-cart shopIcon"></span>
             <span>افزودن به سبد خرید</span>
           </button>

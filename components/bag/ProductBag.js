@@ -1,4 +1,5 @@
 import global from '../../static/global';
+import axios from "axios";
 
 class ProductBag extends React.Component{
   // remove onclick button not done
@@ -8,34 +9,24 @@ class ProductBag extends React.Component{
     super(props);
 
     this.state = {
-      productBags: [
-        {
-          id: 1,
-          src: "/static/images/product/p1.jpg",
-          brandName: "Defacto",
-          productName: "شلوار جین",
-          color: "قرمز",
-          size: "42",
-          price: 4000,
-          percent: 10,
-          numberOfProduct: 1 // not from server
-        },
-        {
-          id: 2,
-          src: "/static/images/product/p2.jpg",
-          brandName: "Mango",
-          productName: "عینک دودی",
-          color: "آبی",
-          size: "40",
-          price: 2000,
-          percent: 20,
-          numberOfProduct: 9 // not from server
-        }
-      ]
+      productBags: []
     }
 
     this.incNumber = this.incNumber.bind(this);
     this.decNumber = this.decNumber.bind(this);
+    this.removeOrder = this.removeOrder.bind(this);
+  }
+  componentDidMount(){
+    const self = this;
+    axios.get(global.host + "/orderProducts/" + self.props.id)
+    .then(function (response) {
+      self.setState({
+        ["productBags"]: response.data
+      })
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
   }
 
   incNumber(product){
@@ -47,6 +38,32 @@ class ProductBag extends React.Component{
       product.numberOfProduct--;
       this.setState({productBags: this.state.productBags});
     }
+  }
+  removeOrder(orderId, productId){
+    const self = this;
+    axios.delete(global.host + "/orderProducts/" + orderId + "/" + productId)
+    .then(function (response) {
+      if(response.data.success){
+        let orderIndex = 0;
+        self.state.productBags.forEach(element => {
+          if(element.id == productId){
+            self.state.productBags.splice(orderIndex, 1);
+          }
+          orderIndex++;
+        })
+        let removedOrders = self.state.productBags;
+        self.setState({
+          ["productBags"]: removedOrders
+        });
+        window.alert(response.data.desc);
+      }
+      else{
+        window.alert(response.data.desc);
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
   }
 
   render () {
@@ -226,7 +243,7 @@ class ProductBag extends React.Component{
           </thead>
           <tbody>
             {this.state.productBags.map((productBag) => 
-              <tr className="">
+              <tr>
                 <td className="productPart">
                   <img src={productBag.src} className="productImage"/>
                   <div className="productDetail">
@@ -279,7 +296,7 @@ class ProductBag extends React.Component{
                 {this.props.remove ?
                   ""
                   :  
-                  <td className="removePanel">
+                  <td className="removePanel" onClick={() => {this.removeOrder(productBag.orderId, productBag.id)}}>
                     <span className="glyphicon glyphicon-remove removeProduct"></span>
                   </td>
                 }

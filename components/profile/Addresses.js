@@ -38,7 +38,7 @@ class Addresses extends React.Component{
           آدرس ها <span className={this.state.addressOpen ? "glyphicon glyphicon-menu-up" : "glyphicon glyphicon-menu-down"}></span>
         </p>
         <div id="addressContainer">
-          <Delivery remove="true"/>
+          <Delivery id={this.props.id} remove="true"/>
         </div>
       </div>
     );

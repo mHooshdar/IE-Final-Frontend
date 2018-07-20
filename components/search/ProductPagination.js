@@ -1,5 +1,6 @@
 import global from '../../static/global';
 import Product from '../category/Product';
+import axios from "axios";
 
 class ProductPagination extends React.Component{
   // colors send to server
@@ -7,6 +8,9 @@ class ProductPagination extends React.Component{
     super(props);
 
     // we have to get this from server
+    this.state = {
+      products: []
+    }
     this.products = [
       {
         id: 1,
@@ -91,11 +95,21 @@ class ProductPagination extends React.Component{
       },
     ];
   }
-
   componentDidMount(){
-    $(document).ready(function() {
-      $('select').niceSelect();
-    });
+    const self = this;
+    axios.get(global.host + "/products")
+    .then(function (response) {
+      self.setState({
+        ["products"]: response.data
+      })
+
+      $(document).ready(function() {
+        $('select').niceSelect();
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
   }
 
   render () {
@@ -209,7 +223,7 @@ class ProductPagination extends React.Component{
             </a>
           </div>
         </div>
-        {this.products.map((product, i) => 
+        {this.state.products.map((product, i) => 
           <div className="col-lg-3 col-md-4 col-sm-6 col-xs-6">
             <Product id={product.id} percent={product.percent} src={product.src} src2={product.src2} brandName={product.brandName} productName={product.productName} price={product.price}/>
           </div>
